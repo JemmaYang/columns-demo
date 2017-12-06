@@ -8,51 +8,80 @@
     <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
   </head>
   <body>
-    <!-- <div><img src="pictures/test.png" style="width:10%"></div> -->
+
     <a-scene>
       <a-assets>
-         <img id="my-image" src="pictures/14 001700100034-01.png">
+         <img id="row01-01" src="pictures/row1-01.png">
+         <img id="row01-03" src="pictures/row1-03.png">
+         <img id="row02-01" src="pictures/row2-01.png">
+         <img id="row02-03" src="pictures/row2-03.png">
+         <img id="row03-01" src="pictures/row3-01.png">
+         <img id="row03-03" src="pictures/row3-03.png">
+         <a-asset-item id="PCM" src="pictures/pcm.dae"></a-asset-item>
+         <img id="columnBg" src="pictures/columnBg.png">
       </a-assets>
       
       <!-- Using the asset management system. -->
-      <a-curvedimage id="case01Left"  src="#my-image" height="3.0" radius="2" theta-length="72" rotation="0 0 0" scale="0.2 0.9 0.2" position="-1 0 -1"></a-curvedimage>
+      <a-entity collada-model="#PCM" position="0 -17 18"></a-entity>
+
+      <!-- <a-curvedimage id="case01Left"  src="#my-image" height="3.0" radius="0.85" theta-length="72" rotation="0 34 0" scale="1.21 3.23 2.42" position="7.85 2.421 6.064"></a-curvedimage> -->
+
+      <a-cylinder id="case01Left" src="#row01-01" scale="1.25 10.6 1.25" position="8.09 2.775 6.9"></a-cylinder>
       
-      <a-entity id="case01" geometry="primitive:cylinder" material="color:white" scale="0.2 0.9 0.2" position="-1 0 0"></a-entity>
+      <a-entity id="case01" geometry="primitive:cylinder" material="src:url(pictures/columnBg.png)" scale="1.25 10.6 1.25" position="21 2.775 6.9"></a-entity>
 
-      <a-curvedimage id="case02Left" height="3.0" radius="2" theta-length="72" rotation="0 0 0" scale="0.2 0.9 0.2" position="0 0 -1"></a-curvedimage>
+      <a-cylinder id="case01Right" src="#row01-03" scale="1.25 10.6 1.25" position="33 2.775 6.9"></a-cylinder>
 
-      <a-entity id="case02" geometry="primitive:cylinder" material="color:white" scale="0.2 0.9 0.2" position="0 0 0"></a-entity>
+     <!--  <a-curvedimage id="case02Left" height="3.0" radius="2" theta-length="72" rotation="0 0 0" scale="0.2 0.9 0.2" position="21 2.775 -16.05"></a-curvedimage> -->
 
-      <a-curvedimage id="case03Left"  height="3.0" radius="2" theta-length="72" rotation="0 0 0" scale="0.2 0.9 0.2" position="1 0 -1"></a-curvedimage>
+      <a-cylinder id="case02Left" src="#columnBg" scale="1.25 10.6 1.25" position="8.09 2.775 -16.05"></a-cylinder>
 
-      <a-entity id="case03" geometry="primitive:cylinder" material="color:white" scale="0.2 0.9 0.2" position="1 0 0"></a-entity>
+      <a-entity id="case02" geometry="primitive:cylinder" material="src:url(pictures/columnBg.png)" scale="1.25 10.6 1.25" position="21 2.775 -16.05"></a-entity>
+
+      <a-cylinder id="case02Right" src="#columnBg" scale="1.25 10.6 1.25" position="33 2.775 -16.05"></a-cylinder>
+
+     <!--  <a-curvedimage id="case03Left"  height="3.0" radius="2" theta-length="72" rotation="0 0 0" scale="0.2 0.9 0.2" position="1 0 -1"></a-curvedimage> -->
+
+      <a-cylinder id="case03Left" src="#columnBg" scale="1.25 10.6 1.25" position="8.09 2.775 -35.01"></a-cylinder>
+
+      <a-entity id="case03" geometry="primitive:cylinder" material="src:url(pictures/columnBg.png)" scale="1.25 10.6 1.25" position="21 2.775 -35"></a-entity>
+
+      <a-cylinder id="case03Right" src="#columnBg" scale="1.25 10.6 1.25" position="33 2.775 -35"></a-cylinder>
   
     </a-scene>
   </body>
 
   <script type="text/javascript">
     window.setTimeout(firstColumn, 1000);
-    window.setTimeout(secondColumn, 13000);
-    window.setTimeout(thirdColumn, 25000);
+    window.setTimeout(secondColumn, 15000);
+    window.setTimeout(thirdColumn, 29000);
 
     function firstColumn() {
        var case01 = document.getElementById("case01");
-       case01.setAttribute("material", "shader:gif;src:url(pictures/showcase.gif);");
+       case01.removeAttribute("material");
+       case01.setAttribute("material", "shader:gif;src:url(pictures/row01.gif);");
        case02.setAttribute("gif", " ");
 
        var case01Left = document.getElementById("case01Left");
-       case01Left.setAttribute("src","#my-image");
+       case01Left.setAttribute("src","#row01-01");
+
+      var case01Right = document.getElementById("case01Right");
+       case01Right.setAttribute("src","#row01-03");
 
 
        var case03 = document.getElementById("case03");
        case03.removeAttribute("material");
        case03.removeAttribute("gif");
-       case03.setAttribute("material", "color:white");
+       case03.setAttribute("material", "src:url(pictures/columnBg.png)");
 
        var case03Left = document.getElementById("case03Left");
        case03Left.removeAttribute("src");
+       case03Left.setAttribute("src","#columnBg");
+       var case03Right = document.getElementById("case03Right");
+       case03Right.removeAttribute("src");
+       case03Right.setAttribute("src","#columnBg");
 
-       setTimeout(secondColumn, 12000);
+       setTimeout(secondColumn, 14000);
        
        // setInterval(firstColumn, 36000);
     }
@@ -61,54 +90,65 @@
     
     function secondColumn() {
        var case02 = document.getElementById("case02");
-       case02.setAttribute("material", "shader:gif;src:url(pictures/showcase.gif);");
+       case02.removeAttribute("material");
+       case02.setAttribute("material", "shader:gif;src:url(pictures/row02.gif);");
        case02.setAttribute("gif", " ");
 
        var case02Left = document.getElementById("case02Left");
-       case02Left.setAttribute("src","#my-image");
+       case02Left.setAttribute("src","#row02-01");
+
+       var case02Right = document.getElementById("case02Right");
+       case02Right.setAttribute("src","#row02-03");
 
 
        var case01 = document.getElementById("case01");
        case01.removeAttribute("material");
        case01.removeAttribute("gif");
-       case01.setAttribute("material", "color:white");
+       case01.setAttribute("material", "src:url(pictures/columnBg.png)");
 
        var case01Left = document.getElementById("case01Left");
        case01Left.removeAttribute("src");
+       case01Left.setAttribute("src","#columnBg");
+       var case01Right = document.getElementById("case01Right");
+       case01Right.removeAttribute("src");
+       case01Right.setAttribute("src","#columnBg");
 
        // setTimeout(stopSecond, 12000);
        
-       setInterval(thirdColumn, 36000);
+       setTimeout(thirdColumn, 14000);
     }
 
 
     function thirdColumn() {
        var case03 = document.getElementById("case03");
-       case03.setAttribute("material", "shader:gif;src:url(pictures/showcase.gif);");
+       case03.removeAttribute("material");
+       case03.setAttribute("material", "shader:gif;src:url(pictures/row03.gif);");
        case03.setAttribute("gif", " ");
 
        var case03Left = document.getElementById("case03Left");
-       case03Left.setAttribute("src","#my-image");
+       case03Left.setAttribute("src","#row03-01");
+       
+       var case03Right = document.getElementById("case03Right");
+       case03Right.setAttribute("src","#row03-03");
 
        var case02 = document.getElementById("case02");
        case02.removeAttribute("material");
        case02.removeAttribute("gif");
-       case02.setAttribute("material", "color:white");
+       case02.setAttribute("material", "src:url(pictures/columnBg.png)");
 
        var case02Left = document.getElementById("case02Left");
        case02Left.removeAttribute("src");
+       case02Left.setAttribute("src","#columnBg");
+       var case02Right = document.getElementById("case02Right");
+       case02Right.removeAttribute("src");
+       case02Right.setAttribute("src","#columnBg");
 
-       setTimeout(firstColumn, 12000);
+       setTimeout(firstColumn, 14000);
        
        // setInterval(thirdColumn, 36000);
     }
 
-    // function stopSecond() {
-    //   var case02 = document.getElementById("case02");
-    //   case02.removeAttribute("material");
-    //   case02.removeAttribute("gif");
-    //   case02.setAttribute("material", "color:white");
-    // }
+   
       
 
     
