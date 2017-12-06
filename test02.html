@@ -4,15 +4,113 @@
     <title>Demo</title>
     <meta name="description" content="Hello, WebVR! - A-Frame">
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
   </head>
   <body>
+    <!-- <div><img src="pictures/test.png" style="width:10%"></div> -->
     <a-scene>
-     <a-assets>
-       <img id="my-image" src="pictures/14 001700100034-01.png">
-     </a-assets>
-       <!-- Using the asset management system. -->
-       <a-image src="#my-image" width="200" height="100"></a-image>
+      <a-assets>
+         <img id="my-image" src="pictures/14 001700100034-01.png">
+      </a-assets>
+      
+      <!-- Using the asset management system. -->
+      <a-curvedimage id="case01Left"  src="#my-image" height="3.0" radius="2" theta-length="72" rotation="0 0 0" scale="0.2 0.9 0.2" position="-1 0 -1"></a-curvedimage>
+      
+      <a-entity id="case01" geometry="primitive:cylinder" material="color:white" scale="0.2 0.9 0.2" position="-1 0 0"></a-entity>
 
+      <a-curvedimage id="case02Left" height="3.0" radius="2" theta-length="72" rotation="0 0 0" scale="0.2 0.9 0.2" position="0 0 -1"></a-curvedimage>
+
+      <a-entity id="case02" geometry="primitive:cylinder" material="color:white" scale="0.2 0.9 0.2" position="0 0 0"></a-entity>
+
+      <a-curvedimage id="case03Left"  height="3.0" radius="2" theta-length="72" rotation="0 0 0" scale="0.2 0.9 0.2" position="1 0 -1"></a-curvedimage>
+
+      <a-entity id="case03" geometry="primitive:cylinder" material="color:white" scale="0.2 0.9 0.2" position="1 0 0"></a-entity>
+  
     </a-scene>
   </body>
+
+  <script type="text/javascript">
+    window.setTimeout(firstColumn, 1000);
+    window.setTimeout(secondColumn, 13000);
+    window.setTimeout(thirdColumn, 25000);
+
+    function firstColumn() {
+       var case01 = document.getElementById("case01");
+       case01.setAttribute("material", "shader:gif;src:url(pictures/showcase.gif);");
+       case02.setAttribute("gif", " ");
+
+       var case01Left = document.getElementById("case01Left");
+       case01Left.setAttribute("src","#my-image");
+
+
+       var case03 = document.getElementById("case03");
+       case03.removeAttribute("material");
+       case03.removeAttribute("gif");
+       case03.setAttribute("material", "color:white");
+
+       var case03Left = document.getElementById("case03Left");
+       case03Left.removeAttribute("src");
+
+       setTimeout(secondColumn, 12000);
+       
+       // setInterval(firstColumn, 36000);
+    }
+
+
+    
+    function secondColumn() {
+       var case02 = document.getElementById("case02");
+       case02.setAttribute("material", "shader:gif;src:url(pictures/showcase.gif);");
+       case02.setAttribute("gif", " ");
+
+       var case02Left = document.getElementById("case02Left");
+       case02Left.setAttribute("src","#my-image");
+
+
+       var case01 = document.getElementById("case01");
+       case01.removeAttribute("material");
+       case01.removeAttribute("gif");
+       case01.setAttribute("material", "color:white");
+
+       var case01Left = document.getElementById("case01Left");
+       case01Left.removeAttribute("src");
+
+       // setTimeout(stopSecond, 12000);
+       
+       setInterval(thirdColumn, 36000);
+    }
+
+
+    function thirdColumn() {
+       var case03 = document.getElementById("case03");
+       case03.setAttribute("material", "shader:gif;src:url(pictures/showcase.gif);");
+       case03.setAttribute("gif", " ");
+
+       var case03Left = document.getElementById("case03Left");
+       case03Left.setAttribute("src","#my-image");
+
+       var case02 = document.getElementById("case02");
+       case02.removeAttribute("material");
+       case02.removeAttribute("gif");
+       case02.setAttribute("material", "color:white");
+
+       var case02Left = document.getElementById("case02Left");
+       case02Left.removeAttribute("src");
+
+       setTimeout(firstColumn, 12000);
+       
+       // setInterval(thirdColumn, 36000);
+    }
+
+    // function stopSecond() {
+    //   var case02 = document.getElementById("case02");
+    //   case02.removeAttribute("material");
+    //   case02.removeAttribute("gif");
+    //   case02.setAttribute("material", "color:white");
+    // }
+      
+
+    
+  </script>
 </html>

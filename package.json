@@ -1,0 +1,21 @@
+{
+  "name": "columns-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JemmaYang/columns-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JemmaYang/columns-demo/issues"
+  },
+  "homepage": "https://github.com/JemmaYang/columns-demo#readme"
+}
