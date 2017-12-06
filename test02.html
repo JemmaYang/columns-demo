@@ -7,13 +7,11 @@
   </head>
   <body>
     <a-scene>
-      
-       <a-video src="test.mov"></a-video>
-      
-      <!-- <a-box position="0 5 -4" rotation="0 0 0" color="#4CC3D9" depth="4" height="0.2" width="4"></a-box>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
-      
-      <a-box position="0 0 -4" rotation="0 0 0" color="#4CC3D9" depth="4" height="0.2" width="4"></a-box> -->
+      <a-assets>
+        <video id="penguin-sledding" autoplay loop="true" src="test.mov"></video>
+      </a-assets>
+  <!-- Using the asset management system. -->
+  <a-video src="#penguin-sledding" width="16" height="9" position="0 0 -20"></a-video>
 
     </a-scene>
   </body>
